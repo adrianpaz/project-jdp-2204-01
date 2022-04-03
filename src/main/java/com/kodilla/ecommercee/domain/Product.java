@@ -14,8 +14,8 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "PRODUCT")
+//@Entity
+//@Table(name = "PRODUCT")
 public class Product {
 
     @Id

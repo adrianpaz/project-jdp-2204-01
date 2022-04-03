@@ -1,3 +1,4 @@
+/*
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.User;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 //@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/user")
@@ -57,3 +59,5 @@ public class UserController {
 
     }
 }
+
+*/

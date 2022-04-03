@@ -34,17 +34,17 @@ public class User {
     @Column(name = "PERSONALKEY")
     private String personalKey;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "CART_ID")
-    private Cart Cart;
+   // @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   // @JoinColumn(name = "CART_ID")
+   // private Cart Cart;
 
-    @Column(name = "ISACTIVE")
+    //@Column(name = "ISACTIVE")
     private boolean isActive;
 
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "ORDER_ID")
-    public Order order;
+   // @ManyToOne(cascade = CascadeType.PERSIST)
+   // @JoinColumn(name = "ORDER_ID")
+  //  public Order order;
 
 
 }

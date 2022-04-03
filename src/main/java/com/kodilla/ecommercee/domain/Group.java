@@ -13,8 +13,8 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@Entity
-@Table(name = "GROUP OF PRODUCT")
+//@Entity
+//@Table(name = "GROUP OF PRODUCT")
 public class Group {
 
     @Id
@@ -25,7 +25,7 @@ public class Group {
 
     @OneToMany(
             targetEntity = Product.class,
-            mappedBy = "group",
+           // mappedBy = "group",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
