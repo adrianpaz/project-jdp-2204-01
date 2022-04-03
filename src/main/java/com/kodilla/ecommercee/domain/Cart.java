@@ -43,8 +43,4 @@ public class Cart {
     private Order order;
 
 
-   // @OneToMany(targetEntity = Order.class,
-    //    cascade = CascadeType.ALL,
-    //   fetch = FetchType.LAZY)
-   // private List<Order> orderList;
 }

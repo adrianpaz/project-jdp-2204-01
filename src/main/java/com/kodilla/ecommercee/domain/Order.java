@@ -26,6 +26,7 @@ public class Order {
 
     @OneToMany(
             targetEntity = Cart.class,
+            mappedBy = "order",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
@@ -33,6 +34,7 @@ public class Order {
 
     @OneToMany(
             targetEntity = User.class,
+            mappedBy = "order",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )

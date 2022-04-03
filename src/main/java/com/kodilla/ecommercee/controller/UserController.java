@@ -31,7 +31,7 @@ public class UserController {
         return ResponseEntity.ok(userMapper.mapToUserDtoList(users));
     }
 
-    @GetMapping(value = "/getUsers/userId")
+    @GetMapping(value = "/userId")
     public  ResponseEntity<UserDto> getUser(@PathVariable Long userId) throws UserNotFoundException {
         return ResponseEntity.ok(userMapper.mapToUserDto(userService.getUser(userId)));
 
@@ -54,11 +54,6 @@ public class UserController {
     public UserDto generateToken(@RequestBody UserDto userDto)  {
        // token controller ->>>>>>>>>>>
        return null;
-
-
-
-
-
 
     }
 }
