@@ -15,7 +15,7 @@ public class UserControllerFirstImplementation {
 
 
     @GetMapping
-    public ResponseEntity<List<UserDto>> getAllGroups() {
+    public ResponseEntity<List<UserDto>> getAllUsers() {
         List<UserDto> userDtoList = new ArrayList<>();
         return ResponseEntity.ok(userDtoList);
     }
