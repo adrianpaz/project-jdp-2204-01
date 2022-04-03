@@ -1,14 +1,17 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
+import java.util.List;
+
+
+@Getter
+@Setter
 @AllArgsConstructor
-@Data
+
 public class UserDto {
-    private final  Long id;
-    private final String userName;
-    private final String personalKey;
-    private CardDto cardDto;
-    private final boolean isActive;
-}
+    private Long id;
+    private String userName;
+    private String personalKey;
+    }
+
