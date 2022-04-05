@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.controller;
+package com.kodilla.ecommercee;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

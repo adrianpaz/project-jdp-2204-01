@@ -1,6 +1,7 @@
-/*
-package com.kodilla.ecommercee.controller;
 
+package com.kodilla.ecommercee;
+
+import com.kodilla.ecommercee.UserNotFoundException;
 import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.domain.UserDto;
 import com.kodilla.ecommercee.mapper.UserMapper;
@@ -11,8 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
-//@CrossOrigin("*")
+
 @RestController
 @RequestMapping("/v1/user")
 public class UserController {
@@ -33,7 +35,7 @@ public class UserController {
         return ResponseEntity.ok(userMapper.mapToUserDtoList(users));
     }
 
-    @GetMapping(value = "/userId")
+    @GetMapping(value = "/{userId}")
     public  ResponseEntity<UserDto> getUser(@PathVariable Long userId) throws UserNotFoundException {
         return ResponseEntity.ok(userMapper.mapToUserDto(userService.getUser(userId)));
 
@@ -45,19 +47,18 @@ public class UserController {
         return ResponseEntity.ok().build();
 
     }
-      @PutMapping(value = "/blockUser")
+    @PutMapping(value = "/{blockUser}")
     public ResponseEntity<UserDto> blockUserId (@RequestBody UserDto userDto ) {
         User user = userMapper.mapToUser(userDto);
         User saveUser = userService.saveUser(user);
         return ResponseEntity.ok(userMapper.mapToUserDto(saveUser));
 
     }
-    @PostMapping(value = "/generateToken")
-    public UserDto generateToken(@RequestBody UserDto userDto)  {
-       // token controller ->>>>>>>>>>>
-       return null;
-
+    @GetMapping("/getToken/{userId}") // in progress.........
+    ResponseEntity<String> getToken(@PathVariable Long userId)  {
+        Random random = new Random();
+        String tokenUserKey = String.valueOf(random.nextInt(99999999)) ;
+        return ResponseEntity.ok("Your personal key for userID:" + userId +  "=" + tokenUserKey);
     }
 }
 
-*/

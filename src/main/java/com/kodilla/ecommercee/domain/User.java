@@ -15,13 +15,6 @@ import java.util.List;
 
 public class User {
 
-
-    public User(Long id, String userName, String personalKey) {
-        this.id = id;
-        this.userName = userName;
-        this.personalKey = personalKey;
-    }
-
     @Id
     @GeneratedValue
     @NotNull
@@ -34,18 +27,15 @@ public class User {
     @Column(name = "PERSONALKEY")
     private String personalKey;
 
-   // @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   // @JoinColumn(name = "CART_ID")
-   // private Cart Cart;
+    // @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // implementation after fix the database structure
+    // @JoinColumn(name = "CART_ID")
+    // private Cart Cart;
 
-    //@Column(name = "ISACTIVE")
+    @Column(name = "ISACTIVE")
     private boolean isActive;
 
-
-   // @ManyToOne(cascade = CascadeType.PERSIST)
-   // @JoinColumn(name = "ORDER_ID")
-  //  public Order order;
-
-
+    // @ManyToOne(cascade = CascadeType.PERSIST)//// implementation after fix the database structure
+    // @JoinColumn(name = "ORDER_ID")
+    //  public Order order;
 }
 

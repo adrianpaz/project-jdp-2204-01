@@ -16,21 +16,21 @@ public class UserMapper {
         return new User(
                 userDto.getId(),
                 userDto.getUserName(),
-                userDto.getPersonalKey()
+                userDto.getPersonalKey(),
+                userDto.isActive()
         );
     }
-
     public UserDto mapToUserDto(final User user) {
         return new UserDto(
                 user.getId(),
                 user.getUserName(),
-                user.getPersonalKey()
+                user.getPersonalKey(),
+                user.isActive()
         );
     }
-
     public List<UserDto> mapToUserDtoList(final List<User> usersList) {
         return usersList.stream()
-                .map(t -> new UserDto(t.getId(), t.getUserName(), t.getPersonalKey()))
+                .map(this::mapToUserDto)
                 .collect(Collectors.toList());
     }
 }
