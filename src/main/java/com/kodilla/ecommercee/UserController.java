@@ -29,17 +29,6 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
-    @GetMapping
-    public ResponseEntity <List<UserDto>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return ResponseEntity.ok(userMapper.mapToUserDtoList(users));
-    }
-
-    @GetMapping(value = "/{userId}")
-    public  ResponseEntity<UserDto> getUser(@PathVariable Long userId) throws UserNotFoundException {
-        return ResponseEntity.ok(userMapper.mapToUserDto(userService.getUser(userId)));
-
-    }
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createUser(@RequestBody UserDto userDto) {
         User user = userMapper.mapToUser(userDto);
@@ -47,18 +36,21 @@ public class UserController {
         return ResponseEntity.ok().build();
 
     }
-    @PutMapping(value = "/{blockUser}")
-    public ResponseEntity<UserDto> blockUserId (@RequestBody UserDto userDto ) {
+
+    @PutMapping(value = "/{blockuser}")
+    public ResponseEntity<UserDto> blockUser(@RequestBody UserDto userDto) {
         User user = userMapper.mapToUser(userDto);
         User saveUser = userService.saveUser(user);
         return ResponseEntity.ok(userMapper.mapToUserDto(saveUser));
 
     }
-    @GetMapping("/getToken/{userId}") // in progress.........
-    ResponseEntity<String> getToken(@PathVariable Long userId)  {
+
+    @GetMapping("/getToken/{userId}")
+        // in progress.........
+    ResponseEntity<String> getToken(@PathVariable Long userId) {
         Random random = new Random();
-        String tokenUserKey = String.valueOf(random.nextInt(99999999)) ;
-        return ResponseEntity.ok("Your personal key for userID:" + userId +  "=" + tokenUserKey);
+        String tokenUserKey = String.valueOf(random.nextInt(99999999));
+        return ResponseEntity.ok("Your personal key for userID:" + userId + "=" + tokenUserKey);
     }
 }
 

@@ -17,9 +17,6 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
 
     public User getUser(final Long userId) throws UserNotFoundException {
         return userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
