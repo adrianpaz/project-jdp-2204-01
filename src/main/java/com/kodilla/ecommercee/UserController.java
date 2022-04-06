@@ -1,17 +1,14 @@
 
 package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.UserNotFoundException;
 import com.kodilla.ecommercee.domain.User;
-import com.kodilla.ecommercee.domain.UserDto;
+import com.kodilla.ecommercee.dto.UserDto;
 import com.kodilla.ecommercee.mapper.UserMapper;
 import com.kodilla.ecommercee.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Random;
 
 
@@ -37,7 +34,7 @@ public class UserController {
 
     }
 
-    @PutMapping(value = "/{blockuser}")
+    @PutMapping
     public ResponseEntity<UserDto> blockUser(@RequestBody UserDto userDto) {
         User user = userMapper.mapToUser(userDto);
         User saveUser = userService.saveUser(user);
