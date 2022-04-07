@@ -2,13 +2,13 @@ package com.kodilla.ecommercee.mapper;
 
 import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.dto.UserDto;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-
+@Component
 public class UserMapper {
 
     public User mapToUser(final UserDto userDto) {
@@ -19,6 +19,7 @@ public class UserMapper {
                 userDto.isActive()
         );
     }
+
     public UserDto mapToUserDto(final User user) {
         return new UserDto(
                 user.getId(),
@@ -27,10 +28,10 @@ public class UserMapper {
                 user.isActive()
         );
     }
-    public List<UserDto> mapToUserDtoList(final List<User> usersList) {
-        return usersList.stream()
-                .map(this::mapToUserDto)
-                .collect(Collectors.toList());
-    }
-}
 
+ //public List<UserDto> mapToUserDtoList(final List<User> usersList) {
+  //   return usersList.stream()
+     //        .map(this::mapToUserDto)
+      //       .collect(Collectors.toList());
+ //}
+}

@@ -5,49 +5,43 @@ import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.dto.UserDto;
 import com.kodilla.ecommercee.mapper.UserMapper;
 import com.kodilla.ecommercee.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Random;
-
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/v1/user")
 public class UserController {
 
-
+    @Autowired
     private final UserService userService;
+    @Autowired
     private final UserMapper userMapper;
 
 
-    public UserController(UserService userService, UserMapper userMapper) {
-        this.userService = userService;
-        this.userMapper = userMapper;
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        User user = userMapper.mapToUser(userDto);
+        userService.createUser(user);
+        return ResponseEntity.ok().build();
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createUser(@RequestBody UserDto userDto) {
-        User user = userMapper.mapToUser(userDto);
-        userService.saveUser(user);
+    @RequestMapping(method = RequestMethod.PUT, value = "blockUserById")
+    public ResponseEntity<Void> blockUserId(@RequestParam Long userId) throws UserNotFoundException {
+        userMapper.mapToUserDto(userService.blockUserId(userId));
         return ResponseEntity.ok().build();
 
     }
 
-    @PutMapping
-    public ResponseEntity<UserDto> blockUser(@RequestBody UserDto userDto) {
+    @RequestMapping(method = RequestMethod.PUT, value = "generateKey")
+    public ResponseEntity<UserDto> generateTemporaryKey(@RequestBody UserDto userDto) {
         User user = userMapper.mapToUser(userDto);
-        User saveUser = userService.saveUser(user);
-        return ResponseEntity.ok(userMapper.mapToUserDto(saveUser));
-
-    }
-
-    @GetMapping("/getToken/{userId}")
-        // in progress.........
-    ResponseEntity<String> getToken(@PathVariable Long userId) {
-        Random random = new Random();
-        String tokenUserKey = String.valueOf(random.nextInt(99999999));
-        return ResponseEntity.ok("Your personal key for userID:" + userId + "=" + tokenUserKey);
+        User saveKey = userService.generateKey(user);
+        return ResponseEntity.ok(userMapper.mapToUserDto(saveKey));
     }
 }
 
