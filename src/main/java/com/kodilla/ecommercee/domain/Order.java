@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -17,16 +18,19 @@ public class Order {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "join_product_order",
+            joinColumns = {@JoinColumn(name = "ORDER_ID", referencedColumnName ="ORDER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")}
+    )
+    private List<Product> products;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Order(Cart cart, User user) {
-        this.cart = cart;
+    public Order(User user) {
         this.user = user;
     }
 }
