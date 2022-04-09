@@ -21,8 +21,8 @@ public class Order {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "join_product_order",
-            joinColumns = {@JoinColumn(name = "ORDER_ID", referencedColumnName ="ORDER_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")}
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")}
     )
     private List<Product> products;
 
@@ -30,7 +30,8 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Order(User user) {
+    public Order(Long id, User user) {
+        this.id = id;
         this.user = user;
     }
 }
