@@ -21,5 +21,5 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Override
     Optional<Product> findById(Long id);
 
-    void deleteById(Long id);
+
 }
