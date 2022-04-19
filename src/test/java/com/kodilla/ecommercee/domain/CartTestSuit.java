@@ -1,4 +1,4 @@
-/*
+
 package com.kodilla.ecommercee.domain;
 
 
@@ -143,4 +143,3 @@ public class CartTestSuit {
         assertEquals(4, sizeOfOrder);
     }
 }
-*/
