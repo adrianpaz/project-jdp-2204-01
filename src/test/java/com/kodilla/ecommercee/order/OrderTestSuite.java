@@ -8,13 +8,9 @@ import com.kodilla.ecommercee.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.transaction.Transactional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -146,13 +142,14 @@ public class OrderTestSuite {
         List<Order> orderList = orderRepository.findAll();
         assertEquals(3, orderList.size());
         //When
-        orderRepository.deleteById(1L);
+        Long id = order.getId();
+        orderRepository.deleteById(id);
         orderList = orderRepository.findAll();
         //Then
         assertEquals(2, orderList.size());
         Iterable<Order> orderIterable = orderRepository.findAll();
         orderIterable.forEach(orders -> orderRepository.deleteById(orders.getId()));
-
+        userRepository.delete(user);
         Iterable<Product> productIterable = productRepository.findAll();
         productIterable.forEach(p -> productRepository.deleteById(p.getId()));
     }
@@ -174,13 +171,13 @@ public class OrderTestSuite {
         orderRepository.save(order);
         Long id1 = order.getId();
         Optional<Order> after = orderRepository.findById(id1);
-         //Then
+        //Then
         assertTrue(after.get().getUser().getUserName().equals("name1"));
         //cleanup
         Iterable<Order> orderIterable = orderRepository.findAll();
         orderIterable.forEach(orders -> orderRepository.deleteById(orders.getId()));
-        Iterable<Product> productIterable = productRepository.findAll();
-        productIterable.forEach(p -> productRepository.deleteById(p.getId()));
+        Iterable<User> userIterable = userRepository.findAll();
+        userIterable.forEach(p -> userRepository.deleteById(p.getId()));
     }
 }
 
