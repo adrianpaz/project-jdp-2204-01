@@ -8,7 +8,9 @@ import com.kodilla.ecommercee.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +32,8 @@ public class OrderTestSuite {
     @Test
     void testRelationWithUser() {
         //Given
-        User user = new User(null,"name", "fsdgf$#", true, new ArrayList<>(), new Cart());
-        User user1 = new User(null,"name1", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user = new User(null, "name", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user1 = new User(null, "name1", "fsdgf$#", true, new ArrayList<>(), new Cart());
         List<User> userList = new ArrayList<>();
         userList.add(user1);
         userList.add(user);
@@ -92,7 +94,7 @@ public class OrderTestSuite {
     @Test
     void testGetOneOrderSuite() {
         //Given
-        User user = new User(null,"name", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user = new User(null, "name", "fsdgf$#", true, new ArrayList<>(), new Cart());
         Order order = new Order(user);
         //When
         userRepository.save(user);
@@ -110,7 +112,7 @@ public class OrderTestSuite {
     void testOrderOrderRepositorySaveSuite() {
 
         //Given
-        User user = new User(null,"name", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user = new User(null, "name", "fsdgf$#", true, new ArrayList<>(), new Cart());
         Order order = new Order(user);
         userRepository.save(user);
         orderRepository.save(order);
@@ -131,7 +133,7 @@ public class OrderTestSuite {
     @Test
     void testDeleteOrderSuite() {
         //Given
-        User user = new User(null,"name", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user = new User(null, "name", "fsdgf$#", true, new ArrayList<>(), new Cart());
         Order order = new Order(user);
         Order order1 = new Order(user);
         Order order2 = new Order(user);
@@ -157,8 +159,8 @@ public class OrderTestSuite {
     @Test
     void testUpdateOrder() {
         //Given
-        User user = new User(null,"name", "fsdgf$#", true, new ArrayList<>(), new Cart());
-        User user1 = new User(null,"name1", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user = new User(null, "name", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user1 = new User(null, "name1", "fsdgf$#", true, new ArrayList<>(), new Cart());
         Order order = new Order(user);
         userRepository.save(user);
         userRepository.save(user1);
