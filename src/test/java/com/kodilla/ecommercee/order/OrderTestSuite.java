@@ -8,13 +8,9 @@ import com.kodilla.ecommercee.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.transaction.Transactional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,8 +30,8 @@ public class OrderTestSuite {
     @Test
     void testRelationWithUser() {
         //Given
-        User user = new User(null,"name", "fsdgf$#", true, new ArrayList<>(), new Cart());
-        User user1 = new User(null,"name1", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user = new User("name", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user1 = new User("name1", "fsdgf$#", true, new ArrayList<>(), new Cart());
         List<User> userList = new ArrayList<>();
         userList.add(user1);
         userList.add(user);
@@ -68,7 +64,7 @@ public class OrderTestSuite {
         //Given
         Order order = new Order();
         Group group = new Group();
-        groupRepository.save(group);
+       groupRepository.save(group);
         orderRepository.save(order);
 
         Product carAudi = new Product("Audi A5", "premium", new BigDecimal(1000), group);
@@ -96,7 +92,7 @@ public class OrderTestSuite {
     @Test
     void testGetOneOrderSuite() {
         //Given
-        User user = new User(null,"name", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user = new User("name", "fsdgf$#", true, new ArrayList<>(), new Cart());
         Order order = new Order(user);
         //When
         userRepository.save(user);
@@ -114,7 +110,7 @@ public class OrderTestSuite {
     void testOrderOrderRepositorySaveSuite() {
 
         //Given
-        User user = new User(null,"name", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user = new User("name", "fsdgf$#", true, new ArrayList<>(), new Cart());
         Order order = new Order(user);
         userRepository.save(user);
         orderRepository.save(order);
@@ -135,7 +131,7 @@ public class OrderTestSuite {
     @Test
     void testDeleteOrderSuite() {
         //Given
-        User user = new User(null,"name", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user = new User("name", "fsdgf$#", true, new ArrayList<>(), new Cart());
         Order order = new Order(user);
         Order order1 = new Order(user);
         Order order2 = new Order(user);
@@ -146,13 +142,14 @@ public class OrderTestSuite {
         List<Order> orderList = orderRepository.findAll();
         assertEquals(3, orderList.size());
         //When
-        orderRepository.deleteById(1L);
+        Long id = order.getId();
+        orderRepository.deleteById(id);
         orderList = orderRepository.findAll();
         //Then
         assertEquals(2, orderList.size());
         Iterable<Order> orderIterable = orderRepository.findAll();
         orderIterable.forEach(orders -> orderRepository.deleteById(orders.getId()));
-
+        userRepository.delete(user);
         Iterable<Product> productIterable = productRepository.findAll();
         productIterable.forEach(p -> productRepository.deleteById(p.getId()));
     }
@@ -160,8 +157,8 @@ public class OrderTestSuite {
     @Test
     void testUpdateOrder() {
         //Given
-        User user = new User(null,"name", "fsdgf$#", true, new ArrayList<>(), new Cart());
-        User user1 = new User(null,"name1", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user = new User("name", "fsdgf$#", true, new ArrayList<>(), new Cart());
+        User user1 = new User("name1", "fsdgf$#", true, new ArrayList<>(), new Cart());
         Order order = new Order(user);
         userRepository.save(user);
         userRepository.save(user1);
@@ -179,8 +176,8 @@ public class OrderTestSuite {
         //cleanup
         Iterable<Order> orderIterable = orderRepository.findAll();
         orderIterable.forEach(orders -> orderRepository.deleteById(orders.getId()));
-        Iterable<Product> productIterable = productRepository.findAll();
-        productIterable.forEach(p -> productRepository.deleteById(p.getId()));
+        Iterable<User> userIterable = userRepository.findAll();
+        userIterable.forEach(p -> userRepository.deleteById(p.getId()));
     }
 }
 
