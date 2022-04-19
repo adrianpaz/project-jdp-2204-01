@@ -1,3 +1,4 @@
+/*
 package com.kodilla.ecommercee.domain;
 
 import com.kodilla.ecommercee.repository.CartRepository;
@@ -6,7 +7,7 @@ import com.kodilla.ecommercee.repository.OrderRepository;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -165,3 +166,4 @@ public class ProductTestSuit {
     }
 }
 
+*/
