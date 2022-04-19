@@ -64,6 +64,7 @@ public class OrderTestSuite {
     void testRelationWithProduct() {
 
         //Given
+
         Order order = new Order();
         Group group = new Group();
         groupRepository.save(group);
@@ -80,6 +81,7 @@ public class OrderTestSuite {
         order.setProducts(productList);
         orderRepository.save(order);
         //Then
+
         assertEquals(3, order.getProducts().size());
         assertEquals(order.getProducts().get(1).getName(), "Ford Mondeo MKV");
 
@@ -94,14 +96,17 @@ public class OrderTestSuite {
     @Test
     void testGetOneOrderSuite() {
         //Given
+
         User user = new User(null, "name", "fsdgf$#", true, new ArrayList<>(), new Cart());
         Order order = new Order(user);
         //When
+
         userRepository.save(user);
         orderRepository.save(order);
         Long id = order.getId();
         Optional<Order> oneOrder = orderRepository.findById(id);
         //Then
+
         assertTrue(oneOrder.isPresent());
         //cleanup
         orderRepository.deleteById(id);
@@ -110,21 +115,24 @@ public class OrderTestSuite {
 
     @Test
     void testOrderOrderRepositorySaveSuite() {
-
         //Given
+
         User user = new User(null, "name", "fsdgf$#", true, new ArrayList<>(), new Cart());
         Order order = new Order(user);
         userRepository.save(user);
         orderRepository.save(order);
         //When
+
         List<Order> orderList = orderRepository.findAll();
         assertEquals(1, orderList.size());
         Order order1 = new Order(user);
         orderRepository.save(order1);
         orderList = orderRepository.findAll();
         //Then
+
         assertEquals(2, orderList.size());
         //cleanup
+
         Iterable<Order> orderIterable = orderRepository.findAll();
         orderIterable.forEach(orders -> orderRepository.deleteById(orders.getId()));
         userRepository.delete(user);
@@ -133,6 +141,7 @@ public class OrderTestSuite {
     @Test
     void testDeleteOrderSuite() {
         //Given
+
         User user = new User(null, "name", "fsdgf$#", true, new ArrayList<>(), new Cart());
         Order order = new Order(user);
         Order order1 = new Order(user);
@@ -144,10 +153,12 @@ public class OrderTestSuite {
         List<Order> orderList = orderRepository.findAll();
         assertEquals(3, orderList.size());
         //When
+
         Long id = order.getId();
         orderRepository.deleteById(id);
         orderList = orderRepository.findAll();
         //Then
+
         assertEquals(2, orderList.size());
         Iterable<Order> orderIterable = orderRepository.findAll();
         orderIterable.forEach(orders -> orderRepository.deleteById(orders.getId()));
@@ -167,6 +178,7 @@ public class OrderTestSuite {
         orderRepository.save(order);
         Long id = order.getId();
         //When
+
         Optional<Order> before = orderRepository.findById(id);
         assertTrue(before.get().getUser().getUserName().equals("name"));
         order.setUser(user1);
@@ -174,6 +186,7 @@ public class OrderTestSuite {
         Long id1 = order.getId();
         Optional<Order> after = orderRepository.findById(id1);
         //Then
+
         assertTrue(after.get().getUser().getUserName().equals("name1"));
         //cleanup
         Iterable<Order> orderIterable = orderRepository.findAll();
