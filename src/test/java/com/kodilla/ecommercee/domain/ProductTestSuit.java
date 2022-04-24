@@ -135,7 +135,7 @@ public class ProductTestSuit {
         List<Product> allProducts = productRepository.findAll();
         cart.setProducts(allProducts);
         cartRepository.save(cart);
-        assertNotNull(cart.getId());
+        assertNotNull(cart.getCartId());
         assertEquals(3, cart.getProducts().size());
         //When
         cart.getProducts().remove(1);
